@@ -23,3 +23,11 @@ packagae-lock.json
 
 # github workflows
 .github/
+
+# husky
+.husky/
+
+# config
+.*
+!/.gitignore
+
