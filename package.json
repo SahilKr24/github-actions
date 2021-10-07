@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --check .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "next": "11.1.2",
@@ -15,6 +17,15 @@
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2"
+    "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.0",
+    "prettier": "2.4.1"
+  },
+  "lint-staged": {
+    "*": "prettier --write",
+    "*.{js,jsx}": "eslint --cache --fix",
+    "*.{js,jsx,css,md}": "prettier --write"
   }
 }

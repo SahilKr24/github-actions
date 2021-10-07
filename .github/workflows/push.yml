@@ -11,7 +11,25 @@ on:
       - staging
 
 jobs:
+  linter:
+    name: linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          
+      - name: install dependencies
+        run: npm ci
+
+      - name: eslint
+        run: npm run lint
+
+      - name: prettier
+        run: npm run prettier
+
   build:
+    name: build
     runs-on: ubuntu-latest
     env:
       NEXT_TELEMETRY_DISABLED: 1
@@ -34,35 +52,6 @@ jobs:
       - run: npm install
       - run: npm run build --if-present
 
-  # lint:
-  #   name: eslint check
-  #   runs-on: ubuntu-latest
-  #   needs: build
-
-  #   steps:
-  #     - uses: actions/cache@v2
-  #       id: restore-build
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
-
-  #     - name: eslint-check
-  #       run: npm run next-lint && npm run lint --silent
-
-  # prettier:
-  #   name: prettier check
-  #   runs-on: ubuntu-latest
-  #   needs: build
-
-  #   steps:
-  #     - uses: actions/cache@v2
-  #       id: restore-build
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
-
-  #     - name: prettier-check
-  #       run: npm run prettier --silent
 
   # broken-links:
   #   name: broken-link check
