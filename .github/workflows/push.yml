@@ -1,9 +1,10 @@
-name: Build and test
+name: ci
 
 on:
   push:
     branches:
       - staging
+      - main
   pull_request:
     branches:
       - main
