@@ -8,9 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --check .",
-    "format": "prettier --write .",
-    "prepare": "husky install",
-    "pre-commit": "next lint && "
+    "format": "prettier --write ."
   },
   "dependencies": {
     "next": "11.1.2",
