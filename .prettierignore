@@ -29,5 +29,4 @@ packagae-lock.json
 
 # config
 .*
-!/.gitignore
 
