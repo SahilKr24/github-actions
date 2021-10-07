@@ -43,7 +43,7 @@ jobs:
           fetch-depth: 1
           
       - name: install dependencies
-      - run: npm ci
+        run: npm ci
 
       - name: eslint
         run: npm run lint
