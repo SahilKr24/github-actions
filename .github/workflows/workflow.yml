@@ -118,7 +118,7 @@ jobs:
   blc-check:
     name: broken-link check
     runs-on: ubuntu-latest
-    needs: prodBuild
+    needs: [prodBuild,linter]
 
     steps:
       - uses: actions/cache@v2
@@ -133,7 +133,7 @@ jobs:
   spell-check:
     name: spelling check
     runs-on: ubuntu-latest
-    needs: prodBuild
+    needs: [prodBuild,linter]
 
     steps:
       - uses: actions/cache@v2
