@@ -65,10 +65,25 @@ jobs:
       - name: prettier
         run: npm run prettier
 
+  spell-check:
+    name: spelling check
+    runs-on: ubuntu-latest
+    needs: repo-setup
+
+    steps:
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+      - name: spelling check
+        run: npm run cspell
+
   devBuild:
     name: push-build
     runs-on: ubuntu-latest
-    needs: [repo-setup,linter,variables]
+    needs: [repo-setup,linter,variables,spell-check]
     if: ${{ needs.variables.outputs.trigger == 'push'}}
     env:
       NEXT_TELEMETRY_DISABLED: 1
@@ -90,16 +105,10 @@ jobs:
         if: ${{ failure() }}
         run: npm run build --if-present
 
-      - uses: actions/cache@v2
-        id: cache-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-
   prodBuild:
     name: prod-build
     runs-on: ubuntu-latest
-    needs: [linter,variables]
+    needs: [linter,variables,spell-check]
     if: ${{ needs.variables.outputs.trigger == 'pull_request' }}
     env:
       NEXT_TELEMETRY_DISABLED: 1
@@ -107,42 +116,3 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm ci
       - run: npm run build --if-present
-
-      - uses: actions/cache@v2
-        id: cache-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-
-
-  blc-check:
-    name: broken-link check
-    runs-on: ubuntu-latest
-    if: always()
-    needs: [prodBuild,devBuild]
-
-    steps:
-      - uses: actions/cache@v2
-        id: restore-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-
-      - name: broken-link check
-        run: npx npm-run-all -p -r start blc
-
-  spell-check:
-    name: spelling check
-    runs-on: ubuntu-latest
-    if: always()
-    needs: [prodBuild,devBuild]
-
-    steps:
-      - uses: actions/cache@v2
-        id: restore-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-
-      - name: spelling check
-        run: npm run cspell
