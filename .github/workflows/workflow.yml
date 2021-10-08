@@ -83,7 +83,7 @@ jobs:
   devBuild:
     name: push-build
     runs-on: ubuntu-latest
-    needs: [repo-setup,linter,variables,spell-check]
+    needs: [repo-setup,linter,variables]
     if: ${{ needs.variables.outputs.trigger == 'push'}}
     env:
       NEXT_TELEMETRY_DISABLED: 1
@@ -108,7 +108,7 @@ jobs:
   prodBuild:
     name: prod-build
     runs-on: ubuntu-latest
-    needs: [linter,variables,spell-check]
+    needs: [linter,variables]
     if: ${{ needs.variables.outputs.trigger == 'pull_request' }}
     env:
       NEXT_TELEMETRY_DISABLED: 1
