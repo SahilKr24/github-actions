@@ -91,7 +91,7 @@ jobs:
         run: npm ci
 
   prodBuild:
-    name: prdo-build
+    name: prod-build
     runs-on: ubuntu-latest
     needs: [linter,variables]
     if: ${{ needs.variables.outputs.trigger == 'pull_request' }}
