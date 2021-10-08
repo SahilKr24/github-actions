@@ -2,7 +2,7 @@
   "version": "0.2",
   "language": "en-GB,en-US",
   "words": ["vercel"],
-  "ignoreWords": ["&rarr;", "noopener", "noreferrer"],
+  "ignoreWords": ["rarr", "noopener", "noreferrer"],
   "ignorePaths": [
     ".eslintignore",
     ".gitattributes",
