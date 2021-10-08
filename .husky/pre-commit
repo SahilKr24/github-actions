@@ -7,14 +7,14 @@ npx lint-staged
 echo "\\n❯ Running Build Checks"
 npm run build > /dev/null
 status=$?
-[ $status -eq 0 ] && echo "Successful ✔ \\n" || echo "> Build failed ✖\\n"
+[ $status -eq 0 ] && echo -e "\e[1;42m \\nSuccessful ✔ \\n \e[0m" || echo -e "\e[1;31m Build failed ✖\\n \e[0m"
 
 echo "❯ Checking for broken links"
 npx npm-run-all -p -r start blc
 status=$?
-[ $status -eq 0 ] && echo "Successful ✔\\n" || echo "> BLC check failed ✖\\n"
+[ $status -eq 0 ] && echo -e "\e[1;42m \\nSuccessful ✔\\n \e[0m" || echo -e "\e[1;31m BLC check failed ✖\\n \e[0m"
 
 echo "❯ Checking for Spelling erros"
 npm run cspell
 status=$?
-[ $status -eq 0 ] && echo "Successful ✔\\n" || echo "> Spelling errors ✖\\n"
+[ $status -eq 0 ] && echo -e "\e[1;42m  \\nSuccessful ✔\\n \e[0m" || echo -e "\e[1;31m Spelling errors ✖\\n \e[0m"
