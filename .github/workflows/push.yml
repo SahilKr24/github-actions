@@ -82,10 +82,13 @@ jobs:
       - name: Cached Build
         run: npm run build --if-present
 
+      - name: Reinstall modules
+        if: ${{ failure() }}
+        run: npm ci
+
       - name: Clean Build
         if: ${{ failure() }}
         run: npm ci
-        run: npm run build --if-present
 
   prodBuild:
     name: build
