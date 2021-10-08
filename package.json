@@ -9,7 +9,8 @@
     "lint": "next lint",
     "prettier": "prettier --check .",
     "format": "prettier --write .",
-    "blc": "blc http://localhost:3000 -ro"
+    "blc": "blc http://localhost:3000 -ro",
+    "cspell": "cspell --config ./cSpell.json '**/*.*'"
   },
   "dependencies": {
     "next": "11.1.2",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "broken-link-checker": "^0.7.8",
+    "cspell": "^5.12.2",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",

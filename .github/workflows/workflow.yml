@@ -90,6 +90,12 @@ jobs:
         if: ${{ failure() }}
         run: npm run build --if-present
 
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
   prodBuild:
     name: prod-build
     runs-on: ubuntu-latest
@@ -102,37 +108,39 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
 
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
 
-  # broken-links:
-  #   name: broken-link check
-  #   runs-on: ubuntu-latest
-  #   needs: build
 
-  #   steps:
-  #     - uses: actions/cache@v2
-  #       id: restore-build
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
+  blc-check:
+    name: broken-link check
+    runs-on: ubuntu-latest
+    needs: prod-build
 
-  #     - name: broken-link check
-  #       run: npm run test-blc
+    steps:
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
 
-  # spellchecking:
-  #   name: spelling check
-  #   runs-on: ubuntu-latest
-  #   needs: build
+      - name: broken-link check
+        run: npx npm-run-all -p -r start blc
 
-  #   steps:
-  #     - uses: actions/cache@v2
-  #       id: restore-build
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
+  spell-check:
+    name: spelling check
+    runs-on: ubuntu-latest
+    needs: prod-build
 
-  #     - uses: actions/setup-node@v1
-  #       name: Run spell check
-  #       with:
-  #         node-version: "12"
-  #     - run: npm install -g cspell
-  #     - run: cspell --config ./cSpell.json "**/*.*"
+    steps:
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+      - name: spelling check
+        run: npm run cspell

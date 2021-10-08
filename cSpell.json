@@ -1,0 +1,34 @@
+{
+  "version": "0.2",
+  "language": "en-GB,en-US",
+  "words": ["vercel"],
+  "ignoreWords": ["&rarr;", "noopener", "noreferrer"],
+  "ignorePaths": [
+    ".eslintignore",
+    ".gitattributes",
+    "*.config.js",
+    ".gitignore",
+    "**/.github",
+    ".prettierignore",
+    ".yarn",
+    "*.{png,jpg,pdf,webp,svg,mp4,xml,json}",
+    "**/.gitignore",
+    "**/.vscode/**",
+    "**/{cspell.*,cSpell.*,.cspell.*,cspell.config.*}",
+    "**/node_modules/**",
+    "**/jsconfig.json",
+    "cspell.json",
+    "package.json",
+    "package-lock.json"
+  ],
+  "ignoreRegExpList": [
+    "http://[^s]*",
+    "https://[^s]*",
+    "^[-\\w]+/[-\\w\\.]+$",
+    "\\((.*)\\)",
+    "```[a-z]*\n[\\s\\S]*?\n```",
+    "\\`([^\\`].*?)\\`",
+    "\\{%.*%\\}",
+    "/^\\s*```[\\s\\S]*?^\\s*```/gm"
+  ]
+}
