@@ -1,4 +1,15 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+echo "Linting Staged Files\\n"
 npx lint-staged
+
+echo "\\nRunning Build Checks\\n"
+npm run build > /dev/null
+status=$?
+[ $status -eq 0 ] && echo " - Build was successful ✓\\n" || echo " - Build failed ✕\\n"
+
+echo "Checking for broken links"
+npx npm-run-all -p -r start blc
+status=$?
+[ $status -eq 0 ] && echo " - No Broken Links ✓\\n" || echo " - BLC check failed ✕\\n"

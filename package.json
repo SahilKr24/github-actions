@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --check .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "blc": "blc http://localhost:3000 -ro"
   },
   "dependencies": {
     "next": "11.1.2",
@@ -16,11 +17,13 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "broken-link-checker": "^0.7.8",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.2",
     "lint-staged": "^11.2.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "2.4.1"
   },
   "lint-staged": {
