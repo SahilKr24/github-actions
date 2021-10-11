@@ -113,9 +113,41 @@
   margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
+@media screen and (min-width: 351px) and (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+  .card {
+    width: 70%;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .main {
+    padding-top: 20rem;
+  }
+}
+@media screen and (width: 360px) {
+  .title {
+    font-size: 2rem;
+  }
+  .main {
+    padding-top: 30rem;
+  }
+}
+@media (max-width: 350px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+  .card {
+    width: 70%;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .main {
+    padding-top: 40rem;
   }
 }
